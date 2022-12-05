@@ -19,22 +19,22 @@ public class Program {
 
         System.out.println("Entre os dados do contrato: ");
         System.out.print("numero: ");
-        int numb = sc.nextInt();
+        int numeroContrato = sc.nextInt();
 
         System.out.print("data: ");
         LocalDate date = LocalDate.parse(sc.next(), patternDate);
         
         System.out.print("valor do contrato: ");
-        double totalValue = sc.nextDouble();
+        double valorTotal = sc.nextDouble();
 
-        Contrato contract = new Contrato(numb, date, totalValue);
+        Contrato contract = new Contrato(numeroContrato, date, valorTotal);
 
         System.out.println("Entre com o numero de parcelas");
-        int n = sc.nextInt();
+        int numeroParcelas = sc.nextInt();
 
         ContractService service = new ContractService(new PaypalService());
                
-        service.processContract(contract, n);
+        service.processContract(contract, numeroParcelas);
 
         System.out.println("Parcelas: ");
         for (Parcela installment : contract.getParcela()) {
