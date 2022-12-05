@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import entities.Contrato;
 import entities.Parcela;
-import services.ContractService;
+import services.contratoService;
 import services.PaypalService;
 
 public class Program {
@@ -32,16 +32,15 @@ public class Program {
         System.out.println("Entre com o numero de parcelas");
         int numeroParcelas = sc.nextInt();
 
-        ContractService service = new ContractService(new PaypalService());
+        contratoService service = new contratoService(new PaypalService());
                
-        service.processContract(contrato, numeroParcelas);
+        service.processaContrato(contrato, numeroParcelas);
 
         System.out.println("Parcelas: ");
-        for (Parcela installment : contrato.getParcela()) {
-            System.out.println(installment);
+        for (Parcela parcela : contrato.getParcela()) {
+            System.out.println(parcela);
 
         }
-
        sc.close();
     }
 }

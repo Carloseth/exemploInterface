@@ -5,19 +5,17 @@ import java.time.LocalDate;
 import entities.Contrato;
 import entities.Parcela;
 
-public class ContractService{
+public class contratoService{
 
     private PagamentoOnlineService onlinePaymentServices;
    
-    public ContractService(PagamentoOnlineService onlinePaymentServices) {
+    public contratoService(PagamentoOnlineService onlinePaymentServices) {
         this.onlinePaymentServices = onlinePaymentServices;
     }
 
-    public void processContract(Contrato contrato, int mes){
-        
-        
+    public void processaContrato(Contrato contrato, int mes){
 
-       for (int i = 1; i <= mes; i++) {
+        for (int i = 1; i <= mes; i++) {
             LocalDate dataDevida = contrato.getDate().plusMonths(i);
 
             double parcelaBasica = contrato.getvalorTotal() / mes;
