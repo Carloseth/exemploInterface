@@ -8,10 +8,12 @@ import java.util.Scanner;
 import entities.Contrato;
 import entities.Parcela;
 import services.contratoService;
+import services.creditoService;
+import services.pixService;
 import services.PaypalService;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         
@@ -32,15 +34,38 @@ public class Program {
         System.out.println("Entre com o numero de parcelas");
         int numeroParcelas = sc.nextInt();
 
-        contratoService service = new contratoService(new PaypalService());
-               
-        service.processaContrato(contrato, numeroParcelas);
+        System.out.println("Qual metodo de pagamento? ");
+        
+       
+            System.out.println("Opcao 1: Cartao de credito ");
+            System.out.println("------------------------------------------");
+            System.out.println("Opcao 2: paypal");
+            System.out.println("------------------------------------------");
+            System.out.println("Opcao 3: pix");
+            String resposta = sc.next();
 
-        System.out.println("Parcelas: ");
-        for (Parcela parcela : contrato.getParcela()) {
-            System.out.println(parcela);
+            
+               System.out.println("Opcao indisponivel, tente novamente");
+        
+               switch (resposta) {
+                case "1":
+                contratoService service = new contratoService(new creditoService());
+                service.processaContrato(contrato, numeroParcelas);
+                    break;
 
-        }
-       sc.close();
+                case "2":
+                service = new contratoService(new PaypalService());
+                service.processaContrato(contrato, numeroParcelas);
+                    break;
+
+                case "3":
+                service = new contratoService(new pixService());
+                service.processaContrato(contrato, numeroParcelas);
+                default:
+                System.out.println("Opção indisponível");
+                //Falta fazer retornar para o inicio, caso seja indisponivel
+               }
+        
+        sc.close();      
     }
 }

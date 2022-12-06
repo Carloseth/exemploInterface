@@ -1,17 +1,15 @@
 package services;
 
 public class PaypalService implements PagamentoOnlineService{
-    private static final double taxa = 0.02; // taxa fixa
-    private static final double juroMensal = 0.01; // taxa fixa
+    private final double taxa = 0.4; // taxa fixa
+    private final double juroMensal = 0.5; // taxa fixa
 
-    @Override
-    public double pagamentoTaxa(double quantia) {
-        return quantia * taxa;
+
+    public double getTaxa() {
+        return taxa;
     }
 
-    @Override
-    public double juro(double quantia, int mes) {
-        return quantia * juroMensal * mes;
+    public double getJuroMensal() {
+        return juroMensal;
     }
-    
 }

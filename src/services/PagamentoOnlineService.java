@@ -1,8 +1,16 @@
 package services;
 
 public interface PagamentoOnlineService {
-    
-    double pagamentoTaxa(double quantia);
-    double juro(double quantia, int mes);
+
+    double getTaxa();
+    double getJuroMensal();
+
+    default double pagamentoTaxa(double quantia ) {
+        return quantia * getTaxa();
+    }
+
+    default double juro(double quantia, int mes){
+        return quantia * getJuroMensal() * mes;
+    }
     
 }
