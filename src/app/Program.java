@@ -16,7 +16,7 @@ public class Program {
     public static void main(String[] args) throws Exception {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-        
+        contratoService service;
         DateTimeFormatter patternDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         System.out.println("Entre os dados do contrato: ");
@@ -42,14 +42,10 @@ public class Program {
             System.out.println("Opcao 2: paypal");
             System.out.println("------------------------------------------");
             System.out.println("Opcao 3: pix");
-            String resposta = sc.next();
-
-            
-               System.out.println("Opcao indisponivel, tente novamente");
-        
+            String resposta = sc.next();    
                switch (resposta) {
                 case "1":
-                contratoService service = new contratoService(new creditoService());
+                service = new contratoService(new creditoService());
                 service.processaContrato(contrato, numeroParcelas);
                     break;
 
@@ -62,10 +58,13 @@ public class Program {
                 service = new contratoService(new pixService());
                 service.processaContrato(contrato, numeroParcelas);
                 default:
-                System.out.println("Opção indisponível");
+                System.out.println("indisponivel");
+                break;
                 //Falta fazer retornar para o inicio, caso seja indisponivel
                }
-        
+               for (Parcela parcela : contrato.getParcela()) {
+                    System.out.println(parcela);
+               }
         sc.close();      
     }
 }
