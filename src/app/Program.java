@@ -35,8 +35,7 @@ public class Program {
         int numeroParcelas = sc.nextInt();
 
         System.out.println("Qual metodo de pagamento? ");
-        
-       
+
             System.out.println("Opcao 1: Cartao de credito ");
             System.out.println("------------------------------------------");
             System.out.println("Opcao 2: paypal");
