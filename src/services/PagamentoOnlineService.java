@@ -1,5 +1,7 @@
 package services;
 
+import enums.TipoPagamento;
+
 public interface PagamentoOnlineService {
 
     double getTaxa();
@@ -12,5 +14,8 @@ public interface PagamentoOnlineService {
     default double juro(double quantia, int mes){
         return quantia * getJuroMensal() * mes;
     }
+
+    abstract double pagamentoContrato(Double valor, TipoPagamento tipo);
+
     
 }

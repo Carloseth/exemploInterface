@@ -1,5 +1,7 @@
 package services;
 
+import enums.TipoPagamento;
+
 public class PaypalService implements PagamentoOnlineService{
     private final double taxa = 0.4; // taxa fixa
     private final double juroMensal = 0.5; // taxa fixa
@@ -12,4 +14,13 @@ public class PaypalService implements PagamentoOnlineService{
     public double getJuroMensal() {
         return juroMensal;
     }
+
+    @Override
+    public double pagamentoContrato(Double valor, TipoPagamento tipo) {
+        if(tipo == TipoPagamento.PAYPAL){
+            System.out.println("Pagamento com paypal: " + valor);
+        }
+        return 0;
+    }
+
 }
