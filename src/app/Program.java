@@ -18,7 +18,7 @@ import services.pixService;
 
 public class Program { 
     static TipoPagamento tipo;
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         List<PagamentoOnlineService> pagamentoOnlineList = Arrays
@@ -51,6 +51,7 @@ public class Program {
             System.out.println("Opcao 3: pix");
 
             String resposta = sc.next();
+            // Verifica se a resposta equivale ao valor desejado
             if("1".equals(resposta)){
                 tipo = TipoPagamento.CREDITO;
             }
@@ -64,6 +65,7 @@ public class Program {
                 System.out.println("Opcao invalida");
             }
             
+            // Imprime o tipo de pagamento com seu valor
             pagamentoOnlineList.forEach(tipoPagamento -> tipoPagamento.pagamentoContrato(valorTotal, tipo));
             
             

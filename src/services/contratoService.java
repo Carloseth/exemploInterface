@@ -13,6 +13,7 @@ public class contratoService{
         this.onlinePaymentServices = onlinePaymentServices;
     }
 
+    
     public void processaContrato(Contrato contrato, int mes){
 
         for (int i = 1; i <= mes; i++) {
@@ -26,6 +27,7 @@ public class contratoService{
 
             contrato.getParcela().add(new Parcela(dataDevida, parcela));
         }
-
     }
+
+    
 }

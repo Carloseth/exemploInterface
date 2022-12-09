@@ -14,6 +14,7 @@ public class creditoService implements PagamentoOnlineService {
         return juroMensal;
     }
 
+     // Verifica se o tipo do pagamento é o credito (enums)
     @Override
     public double pagamentoContrato(Double valor, TipoPagamento tipo) {
         if(tipo == TipoPagamento.CREDITO ){
