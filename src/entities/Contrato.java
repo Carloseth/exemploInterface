@@ -10,6 +10,7 @@ public class Contrato {
     private LocalDate date;
     private Double valorTotal;
 
+    //Lista de parcelas
     List<Parcela> Parcela = new ArrayList<>();
 
     public Contrato(Integer numeroContrato, LocalDate date, Double valorTotal) {

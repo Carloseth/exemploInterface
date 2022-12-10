@@ -2,10 +2,13 @@ package services;
 
 import enums.TipoPagamento;
 
-public class pixService implements PagamentoOnlineService {
+public class PixService  implements PagamentoOnlineService {
     private final double taxa = 0.1; // taxa fixa
     private final double juroMensal = 0.02; // taxa fixa
+    
 
+    public PixService() {
+    }
 
     public double getTaxa() {
         return taxa;
@@ -16,11 +19,11 @@ public class pixService implements PagamentoOnlineService {
     }
 
     @Override
-    public double pagamentoContrato(Double valor, TipoPagamento tipo) {
+    public void processaTipoPagamento(Double valor, TipoPagamento tipo) {
         if(tipo == TipoPagamento.PIX){
             System.out.println("Pagamento com pix: " + valor);
         }
-        
-        return 0;
+    
     }
+
 }

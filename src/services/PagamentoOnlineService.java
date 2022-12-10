@@ -7,7 +7,7 @@ public interface PagamentoOnlineService {
     double getTaxa();
     double getJuroMensal();
 
-    default double pagamentoTaxa(double quantia ) {
+    default double taxa(double quantia ) {
         return quantia * getTaxa();
     }
 
@@ -15,7 +15,6 @@ public interface PagamentoOnlineService {
         return quantia * getJuroMensal() * mes;
     }
 
-    abstract double pagamentoContrato(Double valor, TipoPagamento tipo);
+    void processaTipoPagamento(Double valor, TipoPagamento tipo);
 
-    
 }

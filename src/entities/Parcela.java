@@ -20,6 +20,7 @@ public class Parcela {
         return quantia;
     }
 
+    //Imprime a data + o valor da parcela, formatados.
     @Override
     public String toString(){
         return date.format(patternDate) + " - " + String.format("%.2f", getQuantia()) ;
