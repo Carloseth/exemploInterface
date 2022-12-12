@@ -10,15 +10,16 @@ import java.util.Scanner;
 import entities.Contrato;
 import entities.Parcela;
 import enums.TipoPagamento;
-import services.PagamentoOnlineService;
+import services.TaxaService;
 import services.PaypalService;
 import services.PagamentoContratoService;
 import services.CreditoService;
 import services.PixService;
 
 
-public class Program { 
+public class Main { 
     static TipoPagamento tipo;
+    
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
@@ -26,7 +27,7 @@ public class Program {
         PagamentoContratoService service;
         
         //Lista de pagamentos paypal, credito e pix
-        List<PagamentoOnlineService> pagamentoOnlineList = Arrays
+        List<TaxaService> pagamentoOnlineList = Arrays
         .asList(new PaypalService(), new CreditoService(), new PixService());
 
         //Formatacao de data
@@ -81,11 +82,13 @@ public class Program {
             }
             
             // Imprime o tipo de pagamento com seu valor
-            pagamentoOnlineList.forEach(tipoPagamento -> tipoPagamento.processaTipoPagamento(valorTotal, tipo));   
-            // Imprime
+            pagamentoOnlineList.forEach(tipoPagamento -> tipoPagamento.processaTipoPagamento(valorTotal, tipo));  
+            
+            // Imprime as parcelas
             for (Parcela parcela : contrato.getParcela()) {
                     System.out.println(parcela);
                }
+
         sc.close();      
     }
 }

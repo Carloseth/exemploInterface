@@ -18,7 +18,10 @@ public class Contrato {
         this.date = date;
         this.valorTotal = valorTotal;
     }    
-    
+
+    public Contrato() {
+    }
+
     public Integer getnumeroContrato() {
         return numeroContrato;
     }
@@ -28,9 +31,8 @@ public class Contrato {
     public Double getvalorTotal() {
         return valorTotal;
     }
-
+    
     public List<Parcela> getParcela() {
         return Parcela;
     }
-
 }

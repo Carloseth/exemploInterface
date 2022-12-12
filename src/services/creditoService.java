@@ -2,7 +2,7 @@ package services;
 
 import enums.TipoPagamento;
 
-public class CreditoService implements PagamentoOnlineService {
+public class CreditoService implements TaxaService {
     private final double taxa = 0.5;
     private final double juroMensal = 0.03;
 
@@ -19,9 +19,6 @@ public class CreditoService implements PagamentoOnlineService {
     public void processaTipoPagamento(Double valor, TipoPagamento tipo) {
         if(tipo == TipoPagamento.CREDITO ){
             System.out.println("Pagamento com credito " + valor);
-        }
-        
-        
+        }   
     }
-
 }

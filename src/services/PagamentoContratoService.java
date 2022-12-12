@@ -1,30 +1,29 @@
 package services;
 
 import java.time.LocalDate;
-
 import entities.Contrato;
 import entities.Parcela;
 
 public class PagamentoContratoService{
-
-    private PagamentoOnlineService pagamentoOnline;
+    private TaxaService taxa;
    
-    public PagamentoContratoService(PagamentoOnlineService pagamentoOnline) {
-        this.pagamentoOnline = pagamentoOnline;
+    public PagamentoContratoService(TaxaService Taxa) {
+        this.taxa = Taxa;
     }
 
     public void pagamentoContrato(Contrato contrato, int mes){
 
         for (int i = 1; i <= mes; i++) {
+            //Itera os meses
             LocalDate dataDevida = contrato.getDate().plusMonths(i);
 
-            double parcelaBasica = contrato.getvalorTotal() / mes;
+            double parcelaSimples = contrato.getvalorTotal() / mes;
 
-            double juro = pagamentoOnline.juro(parcelaBasica, i);
-            double taxa = pagamentoOnline.taxa(parcelaBasica + juro);
-            double parcela = parcelaBasica + juro + taxa;
+            double juro = taxa.juro(parcelaSimples, i);
+            double parcelaAposCalculos = parcelaSimples + juro + taxa.taxa(parcelaSimples );
 
-            contrato.getParcela().add(new Parcela(dataDevida, parcela));
+            //Adiciona a parcela na lista de parcelas na classe Parcela
+            contrato.getParcela().add(new Parcela(dataDevida, parcelaAposCalculos));
         }
     }
 }
